@@ -1,0 +1,37 @@
+language: bash
+sudo: true
+services:
+  - docker
+
+before_install:
+  - docker info
+  - docker version
+  
+  - echo "==> Build with Docker ..."
+  
+  # Ubuntu
+  - docker build -f test/Dockerfile.ubuntu1204  -t zabbix-agent:ubuntu12 . | tee build_result.ubuntu1204
+  - docker build -f test/Dockerfile.ubuntu1404  -t zabbix-agent:ubuntu14 . | tee build_result.ubuntu1404
+  #- docker build -f test/Dockerfile.ubuntu16  -t zabbix-agent:ubuntu16 . | tee build_result.ubuntu16
+  
+  # Debian
+  - docker build -f test/Dockerfile.debian7 -t zabbix-agent:debian7 .    | tee build_result.debian7
+  - docker build -f test/Dockerfile.debian8 -t zabbix-agent:debian8 .    | tee build_result.debian8
+  
+  # CentOS
+  #- docker build -f test/Dockerfile.centos6 -t zabbix-agent:centos6 .    | tee build_result.centos6
+  #- docker build -f test/Dockerfile.centos7 -t zabbix-agent:centos7 .    | tee build_result.centos7
+  
+script:
+  - echo "==> Run Test case ..."
+  
+  - grep 'zabbix-agent start/running' build_result.ubuntu1204
+  - grep 'zabbix-agent start/running' build_result.ubuntu1404
+  #- grep 'VIM - Vi IMproved' build_result.ubuntu16
+
+  - grep 'zabbix-agent start/running' build_result.debian7
+  - grep 'zabbix-agent start/running' build_result.debian8
+
+  #- grep 'zabbix-agent start/running' build_result.centos6
+  #- grep 'zabbix-agent start/running' build_result.centos7
+

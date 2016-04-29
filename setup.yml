@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+# vim:ft=ansible:
+
+---
+- name: deploy zabbix-agent
+  hosts: all
+
+  roles:
+    - chusiang.vim-and-vi-mode
+
+  vars_files:
+    - defaults/main.yml
+
+  tasks:
+    - include: tasks/main.yml
+
+  handlers:
+    - include: handlers/main.yml
+

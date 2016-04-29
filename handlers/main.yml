@@ -1,0 +1,10 @@
+#!/usr/bin/env ansible-playbook
+# vim:ft=ansible:
+
+---
+# handlers file for zabbix-agent.ansible.role
+
+- name: restart zabbix-agent
+  become: yes
+  service: name=zabbix-agent state=restarted
+
