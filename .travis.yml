@@ -10,13 +10,13 @@ before_install:
   - echo "==> Build with Docker ..."
   
   # Ubuntu
-  - docker build -f tests/Dockerfile.ubuntu1204  -t zabbix-agent:ubuntu1204 . | tee build_result.ubuntu1204
+  #- docker build -f tests/Dockerfile.ubuntu1204  -t zabbix-agent:ubuntu1204 . | tee build_result.ubuntu1204
   - docker build -f tests/Dockerfile.ubuntu1404  -t zabbix-agent:ubuntu1404 . | tee build_result.ubuntu1404
   #- docker build -f test/Dockerfile.ubuntu16  -t zabbix-agent:ubuntu1604 . | tee build_result.ubuntu16
   
   # Debian
-  - docker build -f tests/Dockerfile.debian7 -t zabbix-agent:debian7 .    | tee build_result.debian7
-  - docker build -f tests/Dockerfile.debian8 -t zabbix-agent:debian8 .    | tee build_result.debian8
+  #- docker build -f tests/Dockerfile.debian7 -t zabbix-agent:debian7 .    | tee build_result.debian7
+  #- docker build -f tests/Dockerfile.debian8 -t zabbix-agent:debian8 .    | tee build_result.debian8
   
   # CentOS
   #- docker build -f test/Dockerfile.centos6 -t zabbix-agent:centos6 .    | tee build_result.centos6
@@ -25,12 +25,12 @@ before_install:
 script:
   - echo "==> Run Test case ..."
   
-  - grep '00:00:00 zabbix_agentd' build_result.ubuntu1204
+  #- grep '00:00:00 zabbix_agentd' build_result.ubuntu1204
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1404
   #- grep '00:00:00 zabbix_agentd' build_result.ubuntu16
 
-  - grep '00:00:00 zabbix_agentd' build_result.debian7
-  - grep '00:00:00 zabbix_agentd' build_result.debian8
+  #- grep '00:00:00 zabbix_agentd' build_result.debian7
+  #- grep '00:00:00 zabbix_agentd' build_result.debian8
 
   #- grep '00:00:00 zabbix_agentd' build_result.centos6
   #- grep '00:00:00 zabbix_agentd' build_result.centos7

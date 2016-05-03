@@ -4,10 +4,9 @@
 ---
 - name: play 'zabbix-agent.ansible.role/setup.yml'
   hosts: all
-  #become: true
 
   #roles:
-  #  - { role: chusiang.vim-and-vi-mode, tags: ["development"] }
+  #  - chusiang.vim-and-vi-mode
 
   vars_files:
     - defaults/main.yml
@@ -18,13 +17,13 @@
 
     - name: check process
       shell: ps -A | grep zabbix-agent
-      register: zabbix-agent_process
+      register: zabbix_agent_process
 
     - name: print process
       debug:
-        msg: "{{ zabbix-agent_process.stdout_lines }}"
+        msg: "{{ zabbix_agent_process.stdout_lines }}"
 
   handlers:
-    - name: include main handler
+    - name: restart zabbix-agent
       include: handlers/main.yml
 
