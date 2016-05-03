@@ -2,18 +2,40 @@
 # vim:ft=ansible:
 
 ---
-- name: deploy zabbix-agent
+- name: play 'zabbix-agent.ansible.role/setup.yml'
   hosts: all
 
-  roles:
-    - chusiang.vim-and-vi-mode
+  #roles:
+  #  - chusiang.vim-and-vi-mode
 
   vars_files:
     - defaults/main.yml
 
   tasks:
-    - include: tasks/main.yml
+    - name: include main task
+      include: tasks/main.yml
+
+    - name: start zabbix-agent on ubuntu
+      service: name=zabbix-agent state=started
+      when: ansible_distribution|lower == "ubuntu"
+
+    - name: start zabbix-agent on debian
+      service: name=zabbix-agent state=started
+      when: ansible_distribution|lower == "debian"
+
+    - name: start zabbix-agent on centos
+      service: name=zabbix-agent state=started
+      when: ansible_distribution|lower == "centos"
+
+    - name: check process
+      shell: ps -A | grep zabbix_agentd
+      register: zabbix_agent_process
+
+    - name: print process
+      debug:
+        msg: "{{ zabbix_agent_process.stdout_lines }}"
 
   handlers:
-    - include: handlers/main.yml
+    - name: restart zabbix-agent
+      include: handlers/main.yml
 

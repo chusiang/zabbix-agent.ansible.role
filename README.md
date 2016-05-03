@@ -1,6 +1,8 @@
 Ansible Role: zabbix-agent
 =========
 
+[![Build Status](https://travis-ci.org/chusiang/zabbix-agent.ansible.role.svg?branch=master)](https://travis-ci.org/chusiang/zabbix-agent.ansible.role)
+
 An Ansible role of deploy zabbix-agent in everway.
 
 Requirements
