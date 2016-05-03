@@ -12,8 +12,18 @@
     - defaults/main.yml
 
   tasks:
-    - include: tasks/main.yml
+    - name: include main task
+      include: tasks/main.yml
+
+    - name: check process
+      shell: ps -A | grep zabbix-agent
+      register: zabbix-agent_process
+
+    - name: print process
+      debug:
+        msg: "{{ zabbix-agent_process.stdout_lines }}"
 
   handlers:
-    - include: handlers/main.yml
+    - name: include main handler
+      include: handlers/main.yml
 
