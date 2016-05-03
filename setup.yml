@@ -2,11 +2,12 @@
 # vim:ft=ansible:
 
 ---
-- name: deploy zabbix-agent
+- name: play 'zabbix-agent.ansible.role/setup.yml'
   hosts: all
+  become: true
 
   roles:
-    - { role: "chusiang.vim-and-vi-mode", tags: ["development"] }
+    - { role: chusiang.vim-and-vi-mode, tags: ["development"] }
 
   vars_files:
     - defaults/main.yml
