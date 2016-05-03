@@ -15,6 +15,18 @@
     - name: include main task
       include: tasks/main.yml
 
+    - name: restart zabbix-agent on ubuntu
+      service: name=zabbix-agent state=restarted
+      when: ansible_distribution|lower == "ubuntu"
+
+    - name: restart zabbix-agent on debian
+      service: name=zabbix-agent state=restarted
+      when: ansible_distribution|lower == "debian"
+
+    - name: restart zabbix-agent on centos
+      service: name=zabbix-agent state=restarted
+      when: ansible_distribution|lower == "centos"
+
     - name: check process
       shell: ps -A | grep zabbix-agent
       register: zabbix_agent_process
