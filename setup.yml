@@ -28,7 +28,7 @@
       when: ansible_distribution|lower == "centos"
 
     - name: check process
-      shell: ps -A | grep zabbix-agent
+      shell: ps -A | grep zabbix_agentd
       register: zabbix_agent_process
 
     - name: print process
