@@ -4,10 +4,10 @@
 ---
 - name: play 'zabbix-agent.ansible.role/setup.yml'
   hosts: all
-  become: true
+  #become: true
 
-  roles:
-    - { role: chusiang.vim-and-vi-mode, tags: ["development"] }
+  #roles:
+  #  - { role: chusiang.vim-and-vi-mode, tags: ["development"] }
 
   vars_files:
     - defaults/main.yml
