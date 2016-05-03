@@ -6,7 +6,7 @@
   hosts: all
 
   roles:
-    - chusiang.vim-and-vi-mode
+    - { role: "chusiang.vim-and-vi-mode", tags: ["development"] }
 
   vars_files:
     - defaults/main.yml
