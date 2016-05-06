@@ -5,8 +5,8 @@
 - name: play 'zabbix-agent.ansible.role/setup.yml'
   hosts: all
 
-  #roles:
-  #  - chusiang.vim-and-vi-mode
+  roles:
+    - chusiang.vim-and-vi-mode
 
   vars_files:
     - defaults/main.yml
