@@ -35,3 +35,6 @@ script:
   #- grep '00:00:00 zabbix_agentd' build_result.centos6
   #- grep '00:00:00 zabbix_agentd' build_result.centos7
 
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+

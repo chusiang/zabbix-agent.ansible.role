@@ -15,6 +15,7 @@ Role Variables
 
 Available variables are listed below, along with default values (see defaults/main.yml):
 
+    zabbix_enable_agent: "true"
     zabbix_server: "localhost"
     zabbix_server_active: "{{ zabbix_server }}"
     zabbix_hostname: "zabbix-agent.local"
@@ -29,7 +30,7 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: all
+    - hosts: servers
       roles:
         - { role: chusiang.zabbix-agent }
 
