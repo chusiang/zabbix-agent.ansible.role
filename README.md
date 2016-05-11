@@ -1,7 +1,7 @@
 Ansible Role: zabbix-agent
 =========
 
-[![Build Status](https://travis-ci.org/chusiang/zabbix-agent.ansible.role.svg?branch=master)](https://travis-ci.org/chusiang/zabbix-agent.ansible.role)
+[![Build Status](https://travis-ci.org/chusiang/zabbix-agent.ansible.role.svg?branch=master)](https://travis-ci.org/chusiang/zabbix-agent.ansible.role) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-zabbix--agent-blue.svg)](https://galaxy.ansible.com/chusiang/zabbix-agent/)
 
 An Ansible role of deploy zabbix-agent in everway.
 
@@ -37,4 +37,4 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-Copyright (ɔ) chusiang from 2016 under the MIT license.
+Copyright (C) chusiang from 2016 under the MIT license.
