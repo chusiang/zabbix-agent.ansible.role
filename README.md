@@ -37,4 +37,4 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-Copyleft (ɔ) chusiang from 2016 under the MIT license.
+Copyright (ɔ) chusiang from 2016 under the MIT license.
