@@ -15,10 +15,13 @@ Role Variables
 
 Available variables are listed below, along with default values (see defaults/main.yml):
 
-    zabbix_enable_agent: "true"
+    zabbix_log_file: "/var/log/zabbix-agent/zabbix_agentd.log
     zabbix_server: "localhost"
     zabbix_server_active: "{{ zabbix_server }}"
     zabbix_hostname: "zabbix-agent.local"
+    
+    # for Active agent auto-registration.
+    zabbix_host_metadata: ""
 
 Dependencies
 ------------

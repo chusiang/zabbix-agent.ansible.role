@@ -20,7 +20,7 @@ PidFile=/var/run/zabbix/zabbix_agentd.pid
 # Default:
 # LogFile=
 
-LogFile=/var/log/zabbix-agent/zabbix_agentd.log
+LogFile={{ zabbix_log_file }}
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.
@@ -154,6 +154,8 @@ Hostname={{ zabbix_hostname }}
 # Range: 0-255 characters
 # Default:
 # HostMetadata=
+
+HostMetadata={{ zabbix_host_metadata }}
 
 ### Option: HostMetadataItem
 #	Optional parameter that defines an item used for getting host metadata.
