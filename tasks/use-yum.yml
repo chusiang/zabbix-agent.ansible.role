@@ -14,6 +14,10 @@
   command: rpm -q zabbix22-agent
   register: package_version
 
+- name: print version
+  debug:
+    msg: "Zabbix-Agent Version: {{ package_version.stdout }}"
+
 - name: create '/etc/zabbix/zabbix_agentd.conf.d/' directory
   become: yes
   file:

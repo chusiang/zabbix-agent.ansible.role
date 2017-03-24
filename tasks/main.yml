@@ -10,10 +10,6 @@
   include: use-yum.yml
   when: ansible_pkg_mgr == "yum"
 
-- name: print version
-  debug:
-    msg: "Zabbix-Agent Version: {{ package_version.stdout }}"
-
 - name: enable/start the zabbix-agent service
   service:
     name: zabbix-agent

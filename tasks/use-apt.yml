@@ -10,4 +10,8 @@
   command: dpkg-query -W zabbix-agent
   register: package_version
 
+- name: print version
+  debug:
+    msg: "Zabbix-Agent Version: {{ package_version.stdout }}"
+
 # vim:ft=ansible:
