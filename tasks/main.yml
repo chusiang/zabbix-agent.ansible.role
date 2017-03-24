@@ -1,22 +1,24 @@
 #!/usr/bin/env ansible-playbook
-# vim:ft=ansible:
 
 ---
 
-- name: install zabbix-agent
-  become: yes
-  apt: name=zabbix-agent update_cache=yes state=latest
+- name: delegate to 'apt' system for installation
+  include: use-apt.yml
+  when: ansible_pkg_mgr == "apt"
 
-- name: check version
-  command: dpkg-query -W zabbix-agent
-  register: package_version
+- name: delegate to 'yum' system for installation
+  include: use-yum.yml
+  when: ansible_pkg_mgr == "yum"
+
+- name: enable/start the zabbix-agent service
+  service:
+    name: zabbix-agent
+    enabled: yes
+    state: started
 
 - name: modify configure
   become: yes
   template: src=templates/zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf
   notify: restart zabbix-agent
 
-- name: print version
-  debug:
-    msg: "Zabbix-Agent Version: {{ package_version.stdout }}"
-
+# vim:ft=ansible:

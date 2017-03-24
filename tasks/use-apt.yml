@@ -1,0 +1,17 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- name: install zabbix-agent
+  become: yes
+  apt: name=zabbix-agent update_cache=yes state=present
+
+- name: check version
+  command: dpkg-query -W zabbix-agent
+  register: package_version
+
+- name: print version
+  debug:
+    msg: "Zabbix-Agent Version: {{ package_version.stdout }}"
+
+# vim:ft=ansible:
