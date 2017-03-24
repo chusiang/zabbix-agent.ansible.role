@@ -1,0 +1,31 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- name: install the epel
+  become: yes
+  yum: name=epel-release state=present
+
+- name: install the zabbix-agent
+  become: yes
+  yum: name=zabbix22-agent update_cache=yes state=present
+
+- name: check version
+  command: rpm -q zabbix22-agent
+  register: package_version
+
+- name: create '/etc/zabbix/zabbix_agentd.conf.d/' directory
+  become: yes
+  file:
+    path: /etc/zabbix/zabbix_agentd.conf.d/
+    state: directory
+
+- name: create '/var/log/zabbix-agent/' directory
+  become: yes
+  file:
+    path: /var/log/zabbix-agent/
+    group: zabbix
+    state: directory
+    mode: 0775
+
+# vim:ft=ansible:
