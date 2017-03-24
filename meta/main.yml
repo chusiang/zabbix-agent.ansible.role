@@ -36,7 +36,7 @@ galaxy_info:
     versions:
       - precise
       - trusty
-      #- xenial
+      - xenial
   - name: Debian
     versions:
       #- wheezy
