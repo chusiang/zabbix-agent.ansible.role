@@ -22,6 +22,9 @@ Available variables are listed below, along with default values (see defaults/ma
     
     # for Active agent auto-registration.
     zabbix_host_metadata: ""
+    
+    # for CentOS.
+    zabbix_release_rpm: "http://repo.zabbix.com/zabbix/3.2/rhel/7/{{ ansible_architecture }}/zabbix-release-3.2-1.el7.noarch.rpm"
 
 Dependencies
 ------------

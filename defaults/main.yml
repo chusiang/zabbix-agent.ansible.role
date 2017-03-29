@@ -1,5 +1,4 @@
 ---
-# defaults file for zabbix-agent.ansible.role
 
 zabbix_log_file: "/var/log/zabbix-agent/zabbix_agentd.log"
 zabbix_server: "localhost"
@@ -8,5 +7,8 @@ zabbix_hostname: "zabbix-agent.local"
 
 # for Active agent auto-registration.
 zabbix_host_metadata: ""
+
+# for CentOS.
+zabbix_release_rpm: "http://repo.zabbix.com/zabbix/3.2/rhel/7/{{ ansible_architecture }}/zabbix-release-3.2-1.el7.noarch.rpm"
 
 # vim: ft=ansible:

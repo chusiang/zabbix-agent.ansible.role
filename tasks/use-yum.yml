@@ -2,16 +2,16 @@
 
 ---
 
-- name: install the epel
+- name: install zabbix-release
   become: yes
-  yum: name=epel-release state=present
+  yum: name={{ zabbix_release_rpm }} state=present
 
-- name: install the zabbix-agent
+- name: install zabbix-agent
   become: yes
-  yum: name=zabbix22-agent update_cache=yes state=present
+  yum: name=zabbix-agent update_cache=yes state=present
 
 - name: check version
-  command: rpm -q zabbix22-agent
+  command: rpm -q zabbix-agent
   register: package_version
 
 - name: print version
@@ -31,5 +31,18 @@
     group: zabbix
     state: directory
     mode: 0775
+
+# Remove the old zabbix-agent logs.
+- name: delete '/var/log/zabbix/zabbix_agentd.log' file
+  become: yes
+  file:
+    path: /var/log/zabbix/zabbix_agentd.log
+    state: absent
+
+- name: delete '/var/log/zabbix/' directory
+  become: yes
+  file:
+    path: /var/log/zabbix/
+    state: absent
 
 # vim:ft=ansible:
