@@ -10,14 +10,14 @@
   include: use-yum.yml
   when: ansible_pkg_mgr == "yum"
 
-- name: enable/start the zabbix-agent service
+- name: enable the zabbix-agent service
+  become: true
   service:
     name: zabbix-agent
     enabled: yes
-    state: started
 
 - name: modify configure
-  become: yes
+  become: true
   template: src=templates/zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf
   notify: restart zabbix-agent
 
