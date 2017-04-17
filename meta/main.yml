@@ -43,8 +43,9 @@ galaxy_info:
       - jessie
 
   galaxy_tags:
-    - zabbix
+    - agent
     - monitor
+    - zabbix
 
 dependencies: []
 

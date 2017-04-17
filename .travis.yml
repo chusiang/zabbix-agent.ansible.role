@@ -6,37 +6,26 @@ services:
 before_install:
   - docker info
   - docker version
-  
+
   - echo "==> Build with Docker ..."
-  
-  # Ubuntu
-  - docker build -f tests/Dockerfile.ubuntu1204  -t zabbix-agent:ubuntu1204 . | tee build_result.ubuntu1204
-  - docker build -f tests/Dockerfile.ubuntu1404  -t zabbix-agent:ubuntu1404 . | tee build_result.ubuntu1404
-  - docker build -f tests/Dockerfile.ubuntu1604  -t zabbix-agent:ubuntu1604 . | tee build_result.ubuntu1604
-  
-  # Debian
-  #- docker build -f tests/Dockerfile.debian7 -t zabbix-agent:debian7 .    | tee build_result.debian7
-  - docker build -f tests/Dockerfile.debian8 -t zabbix-agent:debian8 .    | tee build_result.debian8
-  
-  # CentOS
-  - docker build -f tests/Dockerfile.centos6 -t zabbix-agent:centos6 .    | tee build_result.centos6
-  #- docker build -f test/Dockerfile.centos7 -t zabbix-agent:centos7 .    | tee build_result.centos7
-  
+  - docker build -f tests/Dockerfile.ubuntu1204 -t zabbix-agent:ubuntu1204 . | tee build_result.ubuntu1204
+  - docker build -f tests/Dockerfile.ubuntu1404 -t zabbix-agent:ubuntu1404 . | tee build_result.ubuntu1404
+  - docker build -f tests/Dockerfile.ubuntu1604 -t zabbix-agent:ubuntu1604 . | tee build_result.ubuntu1604
+  #- docker build -f tests/Dockerfile.debian7 -t zabbix-agent:debian7 . | tee build_result.debian7
+  - docker build -f tests/Dockerfile.debian8 -t zabbix-agent:debian8 . | tee build_result.debian8
+  - docker build -f tests/Dockerfile.centos6 -t zabbix-agent:centos6 . | tee build_result.centos6
+
 script:
   - echo "==> Run Test case ..."
-  
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1204
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1404
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1604
-
   #- grep '00:00:00 zabbix_agentd' build_result.debian7
   - grep '00:00:00 zabbix_agentd' build_result.debian8
-
   - grep '00:00:00 zabbix_agentd' build_result.centos6
-  #- grep '00:00:00 zabbix_agentd' build_result.centos7
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-  hipchat:
-    secure: "DTnXg490xbC3HB3Qs/8aSDSRlrVUBWrDzywuo6+PJrTrQFZbAbn1Xeey9wmibkIB6AigZew+EeBTcmIkactb6zH8cTwOBAaZIAiU2SgMjCBkMXOPblvCd9DToL8ul5/jkwu8ZfV91ncrujczajZDPA1qaKhU3LKqpCVCHIxptRyX2FRsiGS1/2IJSWM/GdVWHzRr4OdYcLixqPlC40iQf6sDlCJAlGmkNSGyMDJ9nOlPKH0fRXW+DBSUMcbYFYO7v3AfDlBibWcaCohhVfaMeYt0BGuQ0cDaxMPPqJbvBySHB04OGFbjFCnQgQe9Q/e7SlUctoKumzloIwcoJOnKtZpHuayXYegRSbUuvVhm0E2a3OHjeuenKdjddF1lOAuUyBal3Jlqy1yIwLafW6lCNaR2+xyJ/tcL2Ds/SSTFnvzxZH1j43acJ59mkFjrA6TQUt81sOG4nlFjHOoD+DriCY1tc6WVP3IltjZUyQBvOrg08DtnTHCJYMG6Yep9hg9y4WO7Hi/3eWiA4z8vYNzOBOz2xVKlqyWTTELwSp04PsnZHxmRInoXdPYK0Jmyh3qNtslcw4l5oHb0htFwyqCPBWbjb0wm/5OrIVcnFXYt9k3/uDOCzz9QsPhulg5Ei+159gNMn4w9djzLVK4IUkzBf/X4PwwH7h56WccHsCGchsc="
+  slack:
+    secure: gRZ8Fz8KaZMeqaM5553PVF456hQEjD7gsB5DCbabgeBkyzaSk2JPWjLYvMy/bBVqS/z+yyQ6gfqNc8IcCzkbTBD2WAJjjt5hpg4KSYRO41XlU1Y6QOB73IL5pq+Z/uTfNVaOpksUB2nF6KjE22jyQmpei5Oj+ITcl9QoBFlPu+2PQ1+40E+QASLddsHz+SdAu7ceKKD0YTbcktOJpM2tpnGToP1Li0loRlihH+Vk+VF4yq6p1QXE9s0np9zjAQoc2qOJte99WD4CS6u3gu2HBg8E6HwDRT2qre4PORUjwY0zwnwFKRVw4OI9uPDyHqbw3zLVfN8VBLB/hbW4WC21tOmTGr1o0q1xZxPUB7Z6oCUKjOsdoUR1IznzY3W7s8NJSCGKyWOz3BZ4yCXCOr9tcl2jHUhh2ZE/V2M8ZbARUF8spG/7SXjwfx5WsrxLpUHuSEjHhrtvuRsvg5M5esroYy44+YkO2C+fc84Qh5CcIcg29uvw3vwv/MFDTt/n3tP+nwvcEmzwunP66qHQfc2KAEZWJvwN9rkotkcNZf4qlhLMT7BVd+NUM6tSgf1NtpiqsJLzG15lPT+sEpAG1ehGcjLZqDBkQW/Dr5Xtql+1+aE7ViMRZXIGojU7A9in6tKTJSG/TzXXJXYK5c88o8Q7UjWncQo/0niPiCAbwplt1Xs=
 
