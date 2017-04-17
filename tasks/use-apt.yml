@@ -3,7 +3,7 @@
 ---
 
 - name: install zabbix-agent
-  become: yes
+  become: true
   apt: name=zabbix-agent update_cache=yes state=present
 
 - name: check version

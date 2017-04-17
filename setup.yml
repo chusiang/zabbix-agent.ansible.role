@@ -16,14 +16,17 @@
       include: tasks/main.yml
 
     - name: start zabbix-agent on ubuntu
+      become: true
       service: name=zabbix-agent state=started
       when: ansible_distribution|lower == "ubuntu"
 
     - name: start zabbix-agent on debian
+      become: true
       service: name=zabbix-agent state=started
       when: ansible_distribution|lower == "debian"
 
     - name: start zabbix-agent on centos
+      become: true
       service: name=zabbix-agent state=started
       when: ansible_distribution|lower == "centos"
 

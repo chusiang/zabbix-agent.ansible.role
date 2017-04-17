@@ -3,11 +3,11 @@
 ---
 
 - name: install zabbix-release
-  become: yes
+  become: true
   yum: name={{ zabbix_release_rpm }} state=present
 
 - name: install zabbix-agent
-  become: yes
+  become: true
   yum: name=zabbix-agent update_cache=yes state=present
 
 - name: check version
@@ -18,14 +18,15 @@
   debug:
     msg: "Zabbix-Agent Version: {{ package_version.stdout }}"
 
+# use same path like debian system.
 - name: create '/etc/zabbix/zabbix_agentd.conf.d/' directory
-  become: yes
+  become: true
   file:
     path: /etc/zabbix/zabbix_agentd.conf.d/
     state: directory
 
 - name: create '/var/log/zabbix-agent/' directory
-  become: yes
+  become: true
   file:
     path: /var/log/zabbix-agent/
     group: zabbix
@@ -34,13 +35,13 @@
 
 # Remove the old zabbix-agent logs.
 - name: delete '/var/log/zabbix/zabbix_agentd.log' file
-  become: yes
+  become: true
   file:
     path: /var/log/zabbix/zabbix_agentd.log
     state: absent
 
 - name: delete '/var/log/zabbix/' directory
-  become: yes
+  become: true
   file:
     path: /var/log/zabbix/
     state: absent
