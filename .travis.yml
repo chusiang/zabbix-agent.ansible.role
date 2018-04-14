@@ -8,24 +8,25 @@ before_install:
   - docker version
 
   - echo "==> Build with Docker ..."
-  - docker build -f tests/Dockerfile.ubuntu1204 -t zabbix-agent:ubuntu1204 . | tee build_result.ubuntu1204
-  - docker build -f tests/Dockerfile.ubuntu1404 -t zabbix-agent:ubuntu1404 . | tee build_result.ubuntu1404
-  - docker build -f tests/Dockerfile.ubuntu1604 -t zabbix-agent:ubuntu1604 . | tee build_result.ubuntu1604
-  #- docker build -f tests/Dockerfile.debian7 -t zabbix-agent:debian7 . | tee build_result.debian7
-  - docker build -f tests/Dockerfile.debian8 -t zabbix-agent:debian8 . | tee build_result.debian8
-  - docker build -f tests/Dockerfile.centos6 -t zabbix-agent:centos6 . | tee build_result.centos6
+  - docker build -f tests/Dockerfile.ubuntu1204 -t zabbix-agent:ubuntu1204  . | tee build_result.ubuntu1204
+  - docker build -f tests/Dockerfile.ubuntu1404 -t zabbix-agent:ubuntu1404  . | tee build_result.ubuntu1404
+  - docker build -f tests/Dockerfile.ubuntu1604 -t zabbix-agent:ubuntu1604  . | tee build_result.ubuntu1604
+  - docker build -f tests/Dockerfile.debian8    -t zabbix-agent:debian8     . | tee build_result.debian8
+  - docker build -f tests/Dockerfile.centos6    -t zabbix-agent:centos6     . | tee build_result.centos6
 
 script:
   - echo "==> Run Test case ..."
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1204
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1404
   - grep '00:00:00 zabbix_agentd' build_result.ubuntu1604
-  #- grep '00:00:00 zabbix_agentd' build_result.debian7
   - grep '00:00:00 zabbix_agentd' build_result.debian8
   - grep '00:00:00 zabbix_agentd' build_result.centos6
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
   slack:
-    secure: gRZ8Fz8KaZMeqaM5553PVF456hQEjD7gsB5DCbabgeBkyzaSk2JPWjLYvMy/bBVqS/z+yyQ6gfqNc8IcCzkbTBD2WAJjjt5hpg4KSYRO41XlU1Y6QOB73IL5pq+Z/uTfNVaOpksUB2nF6KjE22jyQmpei5Oj+ITcl9QoBFlPu+2PQ1+40E+QASLddsHz+SdAu7ceKKD0YTbcktOJpM2tpnGToP1Li0loRlihH+Vk+VF4yq6p1QXE9s0np9zjAQoc2qOJte99WD4CS6u3gu2HBg8E6HwDRT2qre4PORUjwY0zwnwFKRVw4OI9uPDyHqbw3zLVfN8VBLB/hbW4WC21tOmTGr1o0q1xZxPUB7Z6oCUKjOsdoUR1IznzY3W7s8NJSCGKyWOz3BZ4yCXCOr9tcl2jHUhh2ZE/V2M8ZbARUF8spG/7SXjwfx5WsrxLpUHuSEjHhrtvuRsvg5M5esroYy44+YkO2C+fc84Qh5CcIcg29uvw3vwv/MFDTt/n3tP+nwvcEmzwunP66qHQfc2KAEZWJvwN9rkotkcNZf4qlhLMT7BVd+NUM6tSgf1NtpiqsJLzG15lPT+sEpAG1ehGcjLZqDBkQW/Dr5Xtql+1+aE7ViMRZXIGojU7A9in6tKTJSG/TzXXJXYK5c88o8Q7UjWncQo/0niPiCAbwplt1Xs=
+    secure: AJFBeD10vrRblz1n6eiSDWn8MCok97Do7daWdq8Sjek1k4Ib6C+9PZVpxsQno8Otr/5yWdv3WZlF2oR9LAFWX7cs/PkGDQVTQ0+L0wpl0YbLx1yxJCkI9n8QVb31yICVygZbWmfgSk+bz6fxs88KwxQqVyN9CczdPUtD002WOULdsvi3SeHO3DP+bVPmuofUeavwHocbw86GgiSqp3+tXLQcp5JYR9eEzdjwfOZxbU8RQQEjwdiWI9s4c0RnEYfmBb8Hx4nEY1cbf/4dnKENf5j3fIbu4Y5fDMTLw9/ITqGeVaQOKWCDXwRahmaY7FPX/i59BSITIm/e0R0+OM2CoW9dwbN5uuZw5U+k+Y7/VhZ9zglBxo9vSkX9OCwrfDxvmt0z23eCOrDGIapRI358qQS5jOY6AXYx0oUy9Jr5fHkfaiYzTVnRLcv8VGGVf9LktqvymjCvzxGX1WuU6Sfz0KZgcl7dUmF1lI8K3isoaWHz3QlVOXReN7cGf0YJWtAeWLAdnQRPHRMvv/BZFWEdpKOOsbu/H/+d9PPlSDpg7N8FQC6NrI6XpyaCwGxAgOrRoVcOyNmY/7X7Rc1QF/Rq/4WhPis9a3XtOErU1QN2VJF6D+wyQeARu3PTeqzqQi3XoIlqTWHBMDnftkK1PQEQfYYfL5mEjMnz8eSw9niu7ps=
 
+env:
+  global:
+    secure: OVTDGcfPBwBWNdhQaTh2ERUUJhpo1+lkKbHdzbpJeo+qUtOhLHixCZr3BEphgZlSDmkG3hxjZYI5u2vG8UHrHtZ9dfQik5sWIllHeF/y0pfdIKw+dov/Qyvk8m1BfX4WdMymtPkEDmnsLaMazgcNezZYZBwKqybdt7Hno+9YzfNqE15nM8MlNrpDdxDbIgjHOKn1mdZbiz8+3mDiHM0hBUTME+yWR6MEJpISAvWGMFESOLdme/t4yLHMl6NxWQz49RDCHWQjnl3sPVyA9bgUrxKXELDlj73KDor0mZC4D/u9SSVbaKaFtnb1RzBwBfTkpiDLPwN4hkL+Qg/E5qFluMMPoMf+wDyPz0kSXuSKhAgzsta+DCAs2GUkfFNBdwNj9inFegzzyPQkKT7IZGRX/BGRB2PmV+YvBk0+akThUNNKAO2YahrMCEdKN7U3hD8hW8XSoSgbzJ2kxaVfRiKGlsAuXRkADPYTKLMwwALbuhc0oEcq1nptyhbQKOy9W2rCBHu3J3jal0m63ulYJdnWCb/dtnAolXqm5PiAB5LLiFRmIWvmp/qfzjuMThCxPTcxSxmjKOUdgLxkbNWvS1xPqRRDSR9cwr6g59j807TrdzHPIJfNv21frQ8cQNgPLlNsaH+aQy6/m4Ebelyba4TGh14JR2G8woYnyN2xFzDh6Qw=
